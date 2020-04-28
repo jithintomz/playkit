@@ -15,7 +15,6 @@ def search(keyword="",category="apps",country="us",pricing="all",rating="all",fo
         return response
 
 
-
     url = "https://play.google.com/store/search?"
     try:
         if proxies:
