@@ -15,14 +15,14 @@ def search(keyword="",category="apps",country="us",pricing="all",rating="all",fo
         return response
 
 
-    
+
     url = "https://play.google.com/store/search?"
     try:
         if proxies:
             htmlresponse = requests.get(url,params = payload,proxies=proxies)
         else:
             htmlresponse = requests.get(url,params = payload)
-        
+
         htmlresponse = BeautifulSoup(htmlresponse.text, 'html.parser')
 
         contents = htmlresponse.find_all("div",class_="id-card-list" )[0].findAll("div", { "class" : "card-content id-track-click id-track-impression" })
