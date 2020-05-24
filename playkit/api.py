@@ -37,7 +37,10 @@ def search(keyword="",category="apps",country="us",pricing="all",rating="all",fo
                 result["rating"] = content.find("div", {"class":"tiny-star star-rating-non-editable-container"})["aria-label"]
             except TypeError:
                 result["rating"] = "Not rated"
-            result["price"] = content.findAll("span", {"class":"display-price"})[0].getText()
+            try:
+                result["price"] = content.findAll("span", {"class":"display-price"})[0].getText()
+            except Exception,e:
+                result["price"] = 'Free'
             result["largeImageUrl"] = content.find("img", {"class":"cover-image"})["data-cover-large"]
             result["smallImageUrl"] = content.find("img", {"class":"cover-image"})["data-cover-small"]
             response["results"].append(result)
