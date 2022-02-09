@@ -84,7 +84,7 @@ def appdetails(identifier="",format="dict",proxies=None):
             result['screenshots'] =[]
             for screenshot in res:
                 result['screenshots'].append(screenshot["src"])
-        except Exception,e:
+        except Exception as e:
             result['screenshots'] =[]
         try:
             reviewContents = htmlresponse.find("div", { "class" : "details-wrapper apps" })
@@ -102,7 +102,7 @@ def appdetails(identifier="",format="dict",proxies=None):
         except AttributeError:
             result["ratingValue"] = None
             result["review"] = []
-        except Exception, e:
+        except Exception as e:
             print e
 
         try:
@@ -111,11 +111,11 @@ def appdetails(identifier="",format="dict",proxies=None):
             result["fileSize"] = additionalinfo.find("div",{"itemprop":"fileSize"}).getText()
             result["currentVersion"] = additionalinfo.find("div",{"itemprop":"softwareVersion"}).getText()
             result["requiresAndroid"] = additionalinfo.find("div",{"itemprop":"operatingSystems"}).getText().strip()
-        except Exception ,e:
+        except Exception as e:
             print e
 
         response["results"] = result
-    except Exception,e:
+    except Exception as e:
         response["error"] = e
         response["status"] = "Failed"
         response["results"] = result
